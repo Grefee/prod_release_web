@@ -5,11 +5,11 @@ const fs = require("fs");
 const Pool = require('pg').Pool;
 
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'Production_First_Item',
-  password: 'pepega',
-  port: 5432,
+  user: process.env.REACT_APP_DB_USER,
+  host: process.env.REACT_APP_DB_HOST,
+  database: process.env.REACT_APP_DB_DATABASE,
+  password: process.env.REACT_APP_DB_PASSWORD,
+  port: process.env.REACT_APP_DB_PORT,
 });
 
 
