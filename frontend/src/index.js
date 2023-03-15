@@ -22,7 +22,7 @@ import {
 } from "@tanstack/react-query";
 
 
-const api = "10.10.195.44"
+const api = process.env.REACT_APP_BACKEND_API
 
 const router = createBrowserRouter(
   createRoutesFromElements(
