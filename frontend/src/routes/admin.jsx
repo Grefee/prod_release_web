@@ -11,7 +11,7 @@ import { useSearchParams,
 import Swal from 'sweetalert2'
 
 
-const IP = '172.23.30.216'
+const IP = process.env.REACT_APP_BACKEND_API
 const conf = ['reports', 'config']
 async function getTypyLinek (IP) {
     let response = await fetch(`http://${IP}:3005/getTypyLinek`);
