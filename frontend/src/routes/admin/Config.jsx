@@ -49,7 +49,7 @@ async function getNameOfLine(IP, lineId) {
 }
 
 
-const IP = '172.23.30.216'
+const IP = process.env.REACT_APP_BACKEND_API
 
 function AddNewProcess({operationID, refetchProcesses}) {
     const { status, error, mutate } = useMutation({
