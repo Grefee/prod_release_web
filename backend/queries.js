@@ -62,10 +62,9 @@ const getTypyLinek = (request, response) => {
 
     
 const insetFinalData = (request, response) => {
-    console.log("data recieved");
     
     const wholeReport = request.body;
-    console.log(wholeReport);
+
     
     const name = request.body[0].report_linka;
     const time = request.body[0].report_time;
@@ -92,7 +91,6 @@ const insetFinalData = (request, response) => {
             item.report_data,
             reportId
         ];
-        console.log(report_values);
         const query =
             `INSERT INTO public."ReportData"(
                     "RData_linka", "RData_Operation", "RData_process", "RData_user", "RData_data", "FReport_id_FinalReport")
