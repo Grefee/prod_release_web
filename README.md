@@ -6,3 +6,6 @@ Base page
   - for wokers, which pick production line and pick for each production operation Ok or Noks and after setting all inputs will show a button for sending those data to api server to save those data to database.
 
 Api server is node.js using express.js to set up urls and pg library to access postgresql database.
+
+
+Made by Pavel Hujer 2023.
