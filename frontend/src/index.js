@@ -7,20 +7,17 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import {ErrorBoundary} from 'react-error-boundary'
-import {useQuery} from "@tanstack/react-query"
-
-import "./index.css";
-import Home from "./routes/root";
-import Admin from "./routes/admin";
-import Config from "./routes/admin/Config";
-import Report from "./routes/admin/Report";
-
 import {
   QueryClient,
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
 
+import "./index.css";
+import Home from "./routes/root";
+import Admin from "./routes/admin";
+import Config from "./routes/admin/Config";
+import Report from "./routes/admin/Report";
 
 const api = process.env.REACT_APP_BACKEND_API
 
@@ -31,8 +28,7 @@ const router = createBrowserRouter(
           element={<Home />}
           path=""
           errorElement={<ErrorBoundary />}
-        />
-    
+        />    
         <Route
             element={<Admin  /> }
             path="/admin"
@@ -55,8 +51,7 @@ const router = createBrowserRouter(
   )
 );
 
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-
     <RouterProvider router={router} />
-
 );
