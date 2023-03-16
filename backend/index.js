@@ -3,7 +3,6 @@ const cors = require('cors');
 const db = require('./queries')
 
 const app = express();
-
 const port = 3005;
 
 app.use(function (req, res, next) {
@@ -12,6 +11,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
     next();
   });
+
 app.use(cors())
 app.use(express.json())
 
