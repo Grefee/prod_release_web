@@ -12,9 +12,6 @@ function Linka(props) {
     const [selected, setSelected] = useState({});
     const isAllSelected = Object.values(selected).every((value) => value !== "None" && value !== "");
     
-
-
-
     async function getTypyLinek() {
         try {
             const response = await fetch('http://'+apiIP+':3005/getTemplateAboutLinka', {
@@ -30,7 +27,6 @@ function Linka(props) {
             if (!response.ok) {
                 throw new Error(`Failed to fetch data, status code: ${response.status}`);
             }
-    
             const data = await response.json();
             setTypyLinek(data);
             setLoading(false);
@@ -150,14 +146,6 @@ function Linka(props) {
                 });
         }});
         };
-        
-
-
-    
-
-
-
-
 
     if (loading) {
         return <div>Loading...</div>;
@@ -207,8 +195,6 @@ function Linka(props) {
                                         <a className="w-3/4">{processData.Process_name}</a>
                                         {processData.Process_type === 'btn' ? (
                                             <div className="flex mr-5">
-                                            
-                                                
                                                 <button className={`border border-black py-2 px-4 rounded-lg ${
                                                     selected[processData.Process_id] === "Y" ? "bg-green-500" : "bg-white"
                                                 }`}
@@ -242,13 +228,10 @@ function Linka(props) {
                             </div>
                         );
                     })}
-                    
                 </div>
             </div>
         </div>
     );
 }
 
-
 export default Linka;
-
