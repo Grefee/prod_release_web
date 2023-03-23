@@ -10,7 +10,6 @@ import {
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
-
 async function getOperations(IP, linkaId) {
     let response = await fetch(`http://${IP}:3005/getOperationsByLineId`, {
         method: 'POST',
@@ -23,6 +22,7 @@ async function getOperations(IP, linkaId) {
     })
     return response.json();
 }
+
 async function getProcesses(IP, linkaId) {
     let response = await fetch(`http://${IP}:3005/getProcessesByLineId`, {
         method: 'POST',
@@ -35,6 +35,7 @@ async function getProcesses(IP, linkaId) {
     })
     return response.json();
 }
+
 async function getNameOfLine(IP, lineId) {
     const response = await fetch(`http://${IP}:3005/getNameOfLine`, {
         method: 'POST',
@@ -47,7 +48,6 @@ async function getNameOfLine(IP, lineId) {
         });
         return response.json();
 }
-
 
 const IP = process.env.REACT_APP_BACKEND_API
 
@@ -64,9 +64,7 @@ function AddNewProcess({operationID, refetchProcesses}) {
               Operation_id: operationID,
               Process_type: processType,
             }),
-            
-          });
-          
+          }); 
         },
         onSuccess: () => {
             Swal.fire({
@@ -83,7 +81,6 @@ function AddNewProcess({operationID, refetchProcesses}) {
             text: "Failed to add new process",
           }),
       });
-
      const addNewProcess = () => {
        Swal.fire({
          title: "Add new process",
@@ -149,9 +146,10 @@ const deleteProcess = () => {
     },
   });
 };
+    
 return (
   <button className="ml-5 rounded-full bg-slate-200 hover:bg-slate-400 p-2" onClick={deleteProcess}>Delete</button>
-);
+    )
 };
 
 function ChangeProcess({processID, processName, processType, refetchProcesses}){
@@ -231,7 +229,6 @@ function AddNewOperation({linkaId, refetchOperations}){
       text: 'Failed to add new Operation, something went wrong'
     })
   });
-
  const addNewProcess = () => {
   Swal.fire({
     title: 'Add new Operation',
@@ -243,7 +240,6 @@ function AddNewOperation({linkaId, refetchOperations}){
     cancelButtonText: 'Cancel',
     preConfirm: async () => {
       let newOperationName = document.getElementById('operation-name').value;
-       
        mutate({linkaId, newOperationName});
      },
    });
@@ -292,39 +288,19 @@ const deleteProcess = () => {
     },
   });
 };
-
-
 return (
   <button className="ml-5 mt-5 rounded-full bg-slate-200 hover:bg-slate-400 p-2" onClick={deleteProcess}>Delete Operation</button>
-
 )};
 
-
-
 function AdminConfig() {
-
-
     const { lineId } = useParams();
     const {status: operationsStatus, data: operations, refetch: refetchOperations} = useQuery({queryKey: ['operations'], queryFn: async () => await getOperations(IP, lineId), initialData: []});
     const {status: processesStatus, data: processes, refetch: refetchProcesses} = useQuery({queryKey: ['processes'], queryFn: async () => await getProcesses(IP, lineId), initialData: []});
     const {status: lineNameStatus, data: lineName} = useQuery({queryKey: ['lineName'], queryFn: async () => await getNameOfLine(IP, lineId), initialData: []});
 
-   
-        
-
-
-
-        
-if (operationsStatus === 'loading') {
-    return <span>Loading...lineNameLoad</span>
-
-} else if (processesStatus === 'loading') {
-    return <span>Loading...processesLoad</span>
-
-} else if (lineNameStatus === 'loading') {
-    return <span>Loading...operationsLoad</span>
-}
-
+if (operationsStatus === 'loading' || processesStatus === 'loading' || lineNameStatus === 'loading') {
+    return <span>Loading...</span>
+else 
     return (        
         <div className="bg-slate-300 w-11/12 h-full flex flex-col">
             <div>
