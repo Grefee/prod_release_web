@@ -43,7 +43,6 @@ const createExport = async (lineId) => {
             Swal.showLoading();
         },
         });
-    
         const response = await fetch(`http://${IP}:3005/createExport`, {
         method: "POST",
         headers: {
@@ -51,11 +50,9 @@ const createExport = async (lineId) => {
         },
         body: JSON.stringify({PLine_id: lineId}),
         });
-    
         if (!response.ok) {
         throw new Error(response.statusText);
         }
-    
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement("a");
@@ -65,7 +62,6 @@ const createExport = async (lineId) => {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-    
         Swal.close();
     } catch (error) {
         console.error(error);
@@ -77,25 +73,19 @@ const createExport = async (lineId) => {
     } finally {
     }
     };
-
-
-
 const IP = process.env.REACT_APP_BACKEND_API
-
-
-
 
 function Reports() {
     const { lineId } = useParams();
     const {isLoading: reportsLoad, data: reports} = useQuery({queryKey: ['reports'], queryFn: async () => await getAdminReports(IP, lineId), initialData: []});
     const {isLoading: lineNameLoad, data: lineName} = useQuery({queryKey: ['lineName'], queryFn: async () => await getNameOfLine(IP, lineId), initialData: []});
-
     const [filter, setFilter] = useState('')
-
+    
     function filterData(event) {
         setFilter(event.target.value);
         console.log(filter)
       }
+    
     function clearFilter(){
         setFilter('')
     }
@@ -105,9 +95,7 @@ if (lineNameLoad || reportsLoad) {
     }
 
     return (
-    
         <div className="ml-16 mt-16 w-11/12">
-            {console.log(reports)}
             <div className=" relative border w-5/6 rounded-3xl overflow-hidden">
                 <table className="w-full text-lg text-left text-black-500 dark:text-gray-400 overflow-hidden ">
                     <thead>
